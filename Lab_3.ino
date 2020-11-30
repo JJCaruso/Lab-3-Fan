@@ -58,8 +58,7 @@ void button(){
  unsigned long interruptTime = millis();
  if (interruptTime - lastInterrupt > 200)
  {
-   Serial.write("Pressed ");
-   state++;
+    state++;
    if (state >=7) {
     state = 0;
    }
@@ -74,7 +73,7 @@ void button(){
 ISR(TIMER5_COMPA_vect){//timer1 interrupt 1Hz toggles pin 13 (LED)
 //generates pulse wave of frequency 1Hz/2 = 0.5kHz (takes two cycles for full wave- toggle high then toggle low)
  
- Serial.write("1");
+
  lcd.setCursor(0,1);
  lcd.print(dt.hour);
  lcd.print(":");
@@ -95,8 +94,8 @@ void loop()
   switch (state) {
     case 0:
       digitalWrite(ENABLE,HIGH); // enable on
-      digitalWrite(DIRA,HIGH); //one way
       digitalWrite(DIRB,LOW);
+      digitalWrite(DIRA,HIGH); //one way
       lcd.setCursor(0,0);
       lcd.print("Full C  ");
       break;
@@ -116,7 +115,7 @@ void loop()
       break;
      case 3:
       digitalWrite(ENABLE,LOW); // enable on
-      digitalWrite(DIRA,HIGH); //one way
+      digitalWrite(DIRA,LOW); //one way
       digitalWrite(DIRB,LOW);
       lcd.setCursor(0,0);
       lcd.print("OFF     ");
